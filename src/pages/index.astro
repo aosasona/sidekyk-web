@@ -1,4 +1,5 @@
 ---
+import WaitlistForm from "../components/WaitlistForm";
 import Layout from "../layouts/Layout.astro";
 ---
 
@@ -11,14 +12,9 @@ import Layout from "../layouts/Layout.astro";
 					Your custom AI <span class="text-primary">sidekyks</span>
 				</h1>
 
-				<form class="md:w-96 space-y-3 mx-auto lg:mx-0">
-					<div>
-						<input type="text" name="first_name" placeholder="first name" class="rounded-b-none px-3 py-2" required />
-						<input type="email" name="email" placeholder="email address" class="rounded-t-none border-t-0 px-3 py-2" required />
-					</div>
-					<button type="submit">Get early access</button>
-					<p class="text-xs text-gray-500 text-center">Coming to iOS & Android soon.</p>
-				</form>
+				<div>
+					<WaitlistForm client:load />
+				</div>
 			</div>
 			<img src="screenshot.png" alt="Sidekyk screenshot" class="w-full max-w-sm md:max-w-xs xl:max-w-sm mx-auto" />
 		</main>
