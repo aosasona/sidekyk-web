@@ -3,20 +3,20 @@ import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout title="Sidekyk">
-	<img src="logo.svg" alt="logo" class="fixed top-4 left-4 w-10 rounded-xl z-50" />
+	<img src="logo.svg" alt="logo" class="fixed top-4 left-4 w-12 rounded-xl z-50" />
 	<div class="min-h-screen w-full sm:w-4/6 md:w-4/5 lg:w-4/6 xl:w-3/5 flex flex-col justify-center mt-28 mb-12 md:my-0 mx-auto">
 		<main class="flex flex-col md:flex-row md:items-center justify-center">
 			<div class="space-y-4 px-10">
 				<h1 class="text-4xl sm:text-5xl md:text-6xl text-zinc-800 font-bold xl:font-extrabold text-left sm:text-center lg:text-left leading-tight xl:leading-tight">
-					Your custom AI <span class="text-primary">sidekicks</span>
+					Your custom AI <span class="text-primary">sidekyks</span>
 				</h1>
 
 				<form class="md:w-96 space-y-3 mx-auto lg:mx-0">
 					<div>
-						<input type="text" name="first_name" placeholder="first name" class="rounded-b-none px-3 py-2" />
-						<input type="email" name="email" placeholder="email address" class="rounded-t-none border-t-0 px-3 py-2" />
+						<input type="text" name="first_name" placeholder="first name" class="rounded-b-none px-3 py-2" required />
+						<input type="email" name="email" placeholder="email address" class="rounded-t-none border-t-0 px-3 py-2" required />
 					</div>
-					<button class="">Get early access</button>
+					<button type="submit">Get early access</button>
 					<p class="text-xs text-gray-500 text-center">Coming to iOS & Android soon.</p>
 				</form>
 			</div>
