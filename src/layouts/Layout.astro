@@ -1,4 +1,4 @@
---- 
+---
 interface Props {
 	title: string;
 }
@@ -7,30 +7,58 @@ const { title } = Astro.props;
 ---
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="dark">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description">
+		<meta name="description" content="Your personal AI sidekicks">
 		<meta name="viewport" content="width=device-width" />
+		<meta name="theme-color" content="#EF4343" />
+		<meta name="color-scheme" content="light dark" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
+
 		<title>{title}</title>
 	</head>
 	<body>
-		<slot />
+		<nav class="fixed top-0 w-screen flex items-center justify-between bg-zinc-100/10 dark:bg-zinc-900/10 backdrop-blur-lg border-b border-b-zinc-200 dark:border-b-zinc-800 py-4 px-4 lg:px-6">
+
+			<div class="h-9 aspect-square rounded-lg overflow-hidden">
+				<svg viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<rect width="512" height="512" fill="#EF4343"/>
+					<circle cx="256.96" cy="182.952" r="54.9515" fill="white"/>
+					<rect x="179" y="249" width="46" height="135" rx="23" fill="white"/>
+					<rect x="288" y="249" width="46" height="135" rx="23" fill="white"/>
+					<circle cx="255.943" cy="182.952" r="54.9515" fill="white"/>
+					<rect x="201.713" y="237.903" width="46.1132" height="109.903" rx="23.0566" transform="rotate(45 201.713 237.903)" fill="white"/>
+					<rect x="278.679" y="270.51" width="46.1132" height="109.903" rx="23.0566" transform="rotate(-45 278.679 270.51)" fill="white"/>
+				</svg>
+			</div>
+
+			<div>
+				<button id="theme-toggle">
+					<i class="text-xl" id="theme-icon"></i>
+				</button>
+
+			</div>
+		</nav>
+
+		<main>
+			<slot />
+		</main>
+
 	</body>
 </html>
+
+<script is:inline src="https://unpkg.com/lucide@latest"> </script>
+<script src="../scripts/layout.ts"></script>
+
+<!-- Global styles -->
 <style is:global>
-	:root {
-		--accent: 136, 58, 234;
-		--accent-light: 224, 204, 250;
-		--accent-dark: 49, 10, 101;
-		--accent-gradient: linear-gradient(45deg, rgb(var(--accent)), rgb(var(--accent-light)) 30%, white 60%);
-	}
-	html {
-		font-family: system-ui, sans-serif;
-		background: #13151A;
-		background-size: 224px;
+	@import url('https://fonts.cdnfonts.com/css/poppins');
+
+	body {
+		font-family: 'Poppins', "Helvetica Neue", Helvetica, Arial, sans-serif;
+		@apply text-zinc-900 dark:text-zinc-100 bg-zinc-100 dark:bg-zinc-900 antialiased transition-colors;
 	}
 	code {
 		font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
