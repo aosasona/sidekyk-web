@@ -1,0 +1,34 @@
+---
+type Props = {
+  id?: string;
+  variant?: "filled" | "outline" | "ghost" | "text";
+  class?: string;
+  type?: "button" | "submit" | "reset";
+  renderHyperlink?: boolean;
+  href?: string;
+}
+
+const variants = {
+  filled: "bg-primary text-white",
+  outline: "border border-primary text-primary",
+  ghost: "bg-primary/20 text-primary",
+  text: "text-primary",
+}
+
+const defaultStyle = "text-sm inline-flex items-center px-4 py-2.5 rounded-lg font-semibold transition-colors duration-150 ease-in-out focus:outline-none focus:shadow-outline-primary hover:bg-opacity-75"
+
+const { id, variant = "filled", class: className, type: btnType = "button", renderHyperlink = false, href = "#" } = Astro.props
+---
+
+{renderHyperlink ?
+  (
+    <a id={id} href={href} class:list={[defaultStyle, className, variants[variant], "!no-underline"]}>
+      <slot />
+    </a>
+  )
+: (
+    <button id={id} type={btnType} class:list={[defaultStyle, className, variants[variant]]}>
+      <slot />
+    </button>
+  )
+}

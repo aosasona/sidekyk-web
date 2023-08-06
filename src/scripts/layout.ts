@@ -1,6 +1,12 @@
+/** @ts-ignore */
+lucide.createIcons();
+
 // Theme
 const $html = document.querySelector("html") as HTMLElement;
-const $themeIcon = document.querySelector("#theme-icon") as HTMLElement;
+const $themeIndicators = {
+  light: document.querySelector("#theme-indicator-light") as HTMLElement,
+  dark: document.querySelector("#theme-indicator-dark") as HTMLElement,
+};
 
 const theme = localStorage.getItem("theme") || "dark";
 loadTheme();
@@ -9,22 +15,23 @@ function loadTheme() {
   const theme = localStorage.getItem("theme") || "dark";
   if (theme === "dark") {
     $html.classList.add("dark");
-    setThemeIcon("sun");
+    setThemeIcon("dark");
     return;
   }
 
   $html.classList.remove("dark");
-  setThemeIcon("moon");
+  setThemeIcon("light");
 }
 
-function setThemeIcon(icon: "sun" | "moon") {
-  $themeIcon.classList.remove("i-lucide-" + (icon === "sun" ? "moon" : "sun"));
-  $themeIcon.classList.add(`i-lucide-${icon}`);
+function setThemeIcon(currentTheme: "dark" | "light") {
+  const otherTheme = currentTheme === "dark" ? "light" : "dark";
+  $themeIndicators[currentTheme].classList.remove("hidden");
+  $themeIndicators[otherTheme].classList.add("hidden");
 }
 
 function toggleTheme() {
   $html.classList.toggle("dark");
-  setThemeIcon($html.classList.contains("dark") ? "sun" : "moon");
+  setThemeIcon($html.classList.contains("dark") ? "dark" : "light");
   localStorage.setItem("theme", $html.classList.contains("dark") ? "dark" : "light");
 }
 

@@ -1,9 +1,12 @@
 ---
+import ThemeToggle from '../components/ThemeToggle.astro';
 interface Props {
 	title: string;
+	showNav?: boolean;
+	showFooter?: boolean;
 }
 
-const { title } = Astro.props;
+const { title, showNav = true, showFooter = true } = Astro.props;
 ---
 
 <!DOCTYPE html>
@@ -20,48 +23,128 @@ const { title } = Astro.props;
 		<title>{title}</title>
 	</head>
 	<body>
-		<nav class="fixed top-0 w-screen flex items-center justify-between bg-zinc-100/10 dark:bg-zinc-900/10 backdrop-blur-lg border-b border-b-zinc-200 dark:border-b-zinc-800 py-4 px-4 lg:px-6">
+		{showNav &&
+			<nav class="fixed top-0 w-screen flex items-center justify-between bg-zinc-100/10 dark:bg-zinc-900/10 backdrop-blur-lg border-b border-b-zinc-200 dark:border-b-zinc-800 py-4 px-4 lg:px-6">
 
-			<div class="h-9 aspect-square rounded-lg overflow-hidden">
-				<svg viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
-					<rect width="512" height="512" fill="#EF4343"/>
-					<circle cx="256.96" cy="182.952" r="54.9515" fill="white"/>
-					<rect x="179" y="249" width="46" height="135" rx="23" fill="white"/>
-					<rect x="288" y="249" width="46" height="135" rx="23" fill="white"/>
-					<circle cx="255.943" cy="182.952" r="54.9515" fill="white"/>
-					<rect x="201.713" y="237.903" width="46.1132" height="109.903" rx="23.0566" transform="rotate(45 201.713 237.903)" fill="white"/>
-					<rect x="278.679" y="270.51" width="46.1132" height="109.903" rx="23.0566" transform="rotate(-45 278.679 270.51)" fill="white"/>
-				</svg>
-			</div>
+				<a class="block h-9 aspect-square rounded-lg overflow-hidden !no-underline" href="/">
+					<svg viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+						<rect width="512" height="512" fill="#EF4343"/>
+						<circle cx="256.96" cy="182.952" r="54.9515" fill="white"/>
+						<rect x="179" y="249" width="46" height="135" rx="23" fill="white"/>
+						<rect x="288" y="249" width="46" height="135" rx="23" fill="white"/>
+						<circle cx="255.943" cy="182.952" r="54.9515" fill="white"/>
+						<rect x="201.713" y="237.903" width="46.1132" height="109.903" rx="23.0566" transform="rotate(45 201.713 237.903)" fill="white"/>
+						<rect x="278.679" y="270.51" width="46.1132" height="109.903" rx="23.0566" transform="rotate(-45 278.679 270.51)" fill="white"/>
+					</svg>
+				</a>
 
-			<div>
-				<button id="theme-toggle">
-					<i class="text-xl" id="theme-icon"></i>
-				</button>
+				<div>
+					<ThemeToggle />
+				</div>
+			</nav>
+		}
 
-			</div>
-		</nav>
-
-		<main>
+		<main class:list={[{"mt-[10vh]": showNav}]}>
 			<slot />
 		</main>
+
+		{showFooter &&
+			<footer class="app-border top py-8 px-6 mt-auto">
+				<div class="text-xs flex flex-wrap justify-center gap-6 mb-6">
+					<a href="/pricing">Pricing</a>
+					<a href="/faq">FAQs</a>
+					<a href="mailto:ayodeji@trulyao.dev">Contact us</a>
+					<a href="/privacy-policy">Privacy policy</a>
+					<a href="/terms">Terms</a>
+				</div>
+				<p class="text-xs text-center">Built by <a href="https://trulyao.dev" target="_blank">Ayodeji</a></p>
+			</footer>
+		}
 
 	</body>
 </html>
 
-<script is:inline src="https://unpkg.com/lucide@latest"> </script>
-<script src="../scripts/layout.ts"></script>
+<script is:inline src="https://unpkg.com/lucide@latest"></script>
 
 <!-- Global styles -->
-<style is:global>
+<style lang="scss" is:global>
 	@import url('https://fonts.cdnfonts.com/css/poppins');
+	@import url('https://fonts.cdnfonts.com/css/istanbul-pro');
+
+	:root {
+		--primary: #EF4343;
+	}
 
 	body {
 		font-family: 'Poppins', "Helvetica Neue", Helvetica, Arial, sans-serif;
-		@apply text-zinc-900 dark:text-zinc-100 bg-zinc-100 dark:bg-zinc-900 antialiased transition-colors;
+		@apply text-base text-zinc-900 dark:text-zinc-100 bg-zinc-100 dark:bg-zinc-900 antialiased transition-colors;
 	}
 	code {
 		font-family: Menlo, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono,
 			Bitstream Vera Sans Mono, Courier New, monospace;
+	}
+	a {
+		color: var(--primary) !important;
+
+		&:hover {
+			@apply underline;
+		}
+	}
+
+	h1 {
+		&.istanbul-pro {
+			font-family: 'Istanbul Pro', "Helvetica Neue", Helvetica, Arial, sans-serif;
+			font-weight: 700;
+			@apply text-3xl;
+		}
+	}
+
+	.app-border {
+		@apply border-zinc-200 dark:border-zinc-800;
+
+		&.left {
+			@apply border-l;
+		}
+
+		&.right {
+			@apply border-r;
+		}
+
+		&.top {
+			@apply border-t;
+		}
+
+		&.bottom {
+			@apply border-b;
+		}
+
+		&.all {
+			@apply border;
+		}
+	}
+
+	::selection {
+		@apply bg-primary;
+	}
+	::-moz-selection {
+		@apply bg-primary;
+	}
+	::-webkit-selection {
+		@apply bg-primary;
+	}
+
+	/* Scrollbar */
+	::-webkit-scrollbar {
+		width: 8px;
+		height: 6px;
+	}
+	::-webkit-scrollbar-track {
+		background: transparent;
+	}
+	::-webkit-scrollbar-thumb {
+		@apply bg-primary/70 rounded-xl;
+	}
+	::-webkit-scrollbar-thumb:hover {
+		@apply bg-primary
 	}
 </style>

@@ -1,7 +1,38 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import ThemeToggle from '../components/ThemeToggle.astro';
+import Button from '../components/Button.astro';
 ---
 
-<Layout title="Welcome to Astro.">
-	<h1>Hey</h1>
+<Layout title="Sidekyk" showNav={false} showFooter={false}>
+	<div class="grid grid-cols-1 lg:grid-cols-6 2xl:grid-cols-9 max-h-screen">
+		<div class="h-screen w-full lg:col-span-4 2xl:col-span-7">
+			<h1>Hey</h1>
+		</div>
+		<div class="w-full flex flex-col col-span-2 bg-zinc-100 dark:bg-zinc-900 border-l border-l-zinc-200 dark:border-l-zinc-800">
+
+			<div class="hidden lg:flex justify-end self-end p-4">
+				<ThemeToggle />
+			</div>
+
+			<div class="h-full flex flex-col items-center justify-center px-6 py-8 lg:py-4">
+				<h1 class="istanbul-pro max-w-xs text-center">Your personal AI sidekicks!</h1>
+				<div class="w-full flex flex-col lg:flex-row lg:items-center lg:justify-center gap-3 mt-6 lg:mt-4">
+					<Button class="!block">Download</Button>
+					<Button class="!block" variant="ghost" renderHyperlink={true} href="/sign-in">Sign In</Button>
+				</div>
+			</div>
+
+			<footer class="app-border top py-6 px-4 mt-auto">
+				<div class="text-xs flex flex-wrap justify-center gap-4 mb-6">
+					<a href="/pricing">Pricing</a>
+					<a href="/faq">FAQs</a>
+					<a href="mailto:ayodeji@trulyao.dev">Contact us</a>
+					<a href="/privacy-policy">Privacy policy</a>
+					<a href="/terms">Terms</a>
+				</div>
+				<p class="text-xs text-center">Built by <a href="https://trulyao.dev" target="_blank">Ayodeji</a></p>
+			</footer>
+		</div>
+	</div>
 </Layout>
