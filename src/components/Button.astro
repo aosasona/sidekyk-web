@@ -1,6 +1,7 @@
 ---
 type Props = {
   id?: string;
+  full?: boolean;
   variant?: "filled" | "outline" | "ghost" | "text";
   class?: string;
   type?: "button" | "submit" | "reset";
@@ -17,17 +18,19 @@ const variants = {
 
 const defaultStyle = "text-sm inline-flex items-center px-4 py-2.5 rounded-lg font-semibold transition-colors duration-150 ease-in-out focus:outline-none focus:shadow-outline-primary hover:bg-opacity-75"
 
-const { id, variant = "filled", class: className, type: btnType = "button", renderHyperlink = false, href = "#" } = Astro.props
+const { id, full = false, variant = "filled", class: className, type: btnType = "button", renderHyperlink = false, href = "#" } = Astro.props
+
+const classes = [defaultStyle, className, variants[variant], { "!w-full !block": full }]
 ---
 
 {renderHyperlink ?
   (
-    <a id={id} href={href} class:list={[defaultStyle, className, variants[variant], "!no-underline"]}>
+    <a id={id} href={href} class:list={[...classes, "!no-underline text-center"]}>
       <slot />
     </a>
   )
 : (
-    <button id={id} type={btnType} class:list={[defaultStyle, className, variants[variant]]}>
+    <button id={id} type={btnType} class:list={classes}>
       <slot />
     </button>
   )
