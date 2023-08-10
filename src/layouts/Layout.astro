@@ -69,7 +69,8 @@ const { title, showNav = true, showFooter = true } = Astro.props;
 <!-- Global styles -->
 <style lang="scss" is:global>
 	@import url('https://fonts.cdnfonts.com/css/poppins');
-	@import url('https://fonts.cdnfonts.com/css/istanbul-pro');
+	// @import url('https://fonts.cdnfonts.com/css/istanbul-pro');
+	@import url('https://fonts.cdnfonts.com/css/naston');
 
 	:root {
 		--primary: #EF4343;
@@ -92,10 +93,10 @@ const { title, showNav = true, showFooter = true } = Astro.props;
 	}
 
 	h1 {
-		&.istanbul-pro {
-			font-family: 'Istanbul Pro', "Helvetica Neue", Helvetica, Arial, sans-serif;
+		&.naston {
+			font-family: 'Naston', "Helvetica Neue", Helvetica, Arial, sans-serif;
 			font-weight: 700;
-			@apply text-3xl;
+			@apply text-3xl sm:text-4xl lg:text-3xl;
 		}
 	}
 
