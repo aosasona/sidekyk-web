@@ -19,8 +19,8 @@ export default function FeatureList() {
   }
 
   return (
-    <div className="flex items-center w-full h-full">
-      <img src={`mockups/${currentFeature}.PNG`} className="object-contain h-5/6" />
+    <div className="flex relative flex-col-reverse items-center w-full h-full lg:flex-row">
+      <img src={`mockups/${currentFeature}.PNG`} className="object-contain w-5/6 mx-auto -bottom-[50%]" />
     </div>
   );
 }
