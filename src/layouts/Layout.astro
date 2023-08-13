@@ -92,6 +92,14 @@ const { title, showNav = true, showFooter = true } = Astro.props;
 		}
 	}
 
+	.feature {
+		@apply  max-w-[90%] sm:max-w-xl lg:max-w-6xl mx-auto bg-zinc-200 dark:bg-zinc-800 rounded-3xl;
+	}
+
+	.text-muted {
+		@apply text-zinc-500 dark:text-zinc-400;
+	}
+
 	.app-border {
 		@apply border-zinc-200 dark:border-zinc-800;
 
