@@ -8,20 +8,26 @@ import FeatureList from '../components/story-views/FeatureList.tsx';
 ---
 
 <Layout title="Sidekyk" showNav={true} showFooter={true}>
-	<div class="container mx-auto">
+	<div class="container mx-auto mb-8">
 
-		<div class="w-full flex flex-col bg-zinc-100 dark:bg-zinc-900 py-4 lg:pt-10">
-			<div class="h-full flex flex-col items-center justify-center px-8 py-8">
-				<h1 class="hero max-w-xs sm:max-w-xl lg:max-w-2xl text-left lg:text-center">Your personal AI sidekicks!</h1>
-				<div class="w-full lg:max-w-xl mx-auto flex flex-col md:flex-row lg:items-center lg:justify-center gap-3 mt-8 lg:mt-6">
-					<Button full={true} renderHyperlink={true} href="/download">Download</Button>
-					<Button full={true} variant="ghost" renderHyperlink={true} href="/sign-in">Sign In</Button>
+		<div class="w-full max-w-[90%] sm:max-w-xl lg:max-w-7xl mx-auto flex flex-col bg-zinc-100 dark:bg-zinc-900 pt-8 lg:pt-10">
+			<div class="grid grid-cols-1 lg:grid-cols-2 bg-zinc-200 dark:bg-zinc-800 rounded-3xl pt-10 lg:py-0 lg:pl-12">
+				<div class="h-full sm:max-w-lg lg:max-w-none mx-auto flex flex-col justify-center px-8">
+					<h1 class="hero text-center lg:text-left">Your <span class="text-primary">personal</span> AI sidekicks!</h1>
+					<div>
+						<div class="w-full lg:max-w-sm flex lg:items-center lg:justify-center gap-3 mt-6 lg:mt-6">
+							<Button full={true} renderHyperlink={true} href="/download">Download</Button>
+							<Button full={true} variant="ghost" renderHyperlink={true} href="/sign-in">Sign In</Button>
+						</div>
+						<p class="text-xs text-zinc-500 dark:text-zinc-300 font-medium text-center lg:text-left mt-4 lg:px-1">Available on iOS and Android soon.</p>
+					</div>
 				</div>
+
+				<img src="/features/home.svg" class="sm:max-w-sm lg:max-w-lg mx-auto object-contain lg:pt-4" />
 			</div>
 		</div>
 
-		<div class="w-full lg:col-span-6 2xl:col-span-7 overflow-hidden" id="stories">
-			<FeatureList client:load />
+		<div class="w-full grid grid-cols-1 lg:grid-cols-3" id="stories">
 		</div>
 	</div>
 </Layout>
