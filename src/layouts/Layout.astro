@@ -24,22 +24,16 @@ const { title, showNav = true, showFooter = true } = Astro.props;
 
 		<title>{title}</title>
 	</head>
-	<body>
+	<body class="no-scroll">
+		<div class="w-screen h-screen bg-primary flex items-center justify-center fixed top-0 left-0 z-[99999999] transition-all" id="splash">
+			<img src="/transparent-logo.png" class="h-10 aspect-square" />
+		</div>
 		{showNav &&
 			<nav class="fixed top-0 w-screen flex items-center justify-between bg-zinc-100/10 dark:bg-zinc-900/10 backdrop-blur-xl border-b border-b-zinc-200 dark:border-b-zinc-800 py-4 px-4 lg:px-6 z-[999]">
 
-				<a class="block h-9 aspect-square rounded-lg overflow-hidden !no-underline" href="/">
-					<svg viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
-						<rect width="512" height="512" fill="#EF4343"/>
-						<circle cx="256.96" cy="182.952" r="54.9515" fill="white"/>
-						<rect x="179" y="249" width="46" height="135" rx="23" fill="white"/>
-						<rect x="288" y="249" width="46" height="135" rx="23" fill="white"/>
-						<circle cx="255.943" cy="182.952" r="54.9515" fill="white"/>
-						<rect x="201.713" y="237.903" width="46.1132" height="109.903" rx="23.0566" transform="rotate(45 201.713 237.903)" fill="white"/>
-						<rect x="278.679" y="270.51" width="46.1132" height="109.903" rx="23.0566" transform="rotate(-45 278.679 270.51)" fill="white"/>
-					</svg>
+				<a class="block h-9 md:h-10 aspect-square rounded-lg overflow-hidden !no-underline" href="/">
+					<img src="/logo.png" alt="Sidekyk logo" />
 				</a>
-
 				<div>
 					<ThemeToggle />
 				</div>
@@ -90,6 +84,10 @@ const { title, showNav = true, showFooter = true } = Astro.props;
 			font-family: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
 			@apply text-zinc-900 dark:text-zinc-50 text-[2.5rem] sm:text-4xl lg:text-6xl leading-tight lg:leading-tight font-extrabold;
 		}
+	}
+
+	.no-scroll {
+		@apply h-full overflow-hidden;
 	}
 
 	.feature {
