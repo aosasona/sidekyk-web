@@ -24,10 +24,7 @@ const { title, showNav = true, showFooter = true } = Astro.props;
 
 		<title>{title}</title>
 	</head>
-	<body class="no-scroll">
-		<div class="w-screen h-screen bg-primary flex items-center justify-center fixed top-0 left-0 z-[99999999] transition-all" id="splash">
-			<img src="/transparent-logo.png" class="h-10 aspect-square" />
-		</div>
+	<body>
 		{showNav &&
 			<nav class="fixed top-0 w-screen flex items-center justify-between bg-zinc-100/10 dark:bg-zinc-900/10 backdrop-blur-xl border-b border-b-zinc-200 dark:border-b-zinc-800 py-4 px-4 lg:px-6 z-[999]">
 

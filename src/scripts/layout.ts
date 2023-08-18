@@ -1,11 +1,6 @@
 /** @ts-ignore */
 lucide.createIcons();
 
-document.addEventListener("theme:loaded", () => {
-  document.querySelector("body")!.classList.remove("no-scroll");
-  document.querySelector("#splash")!.classList.add("hidden");
-});
-
 // Theme
 const $html = document.querySelector("html") as HTMLElement;
 const $themeIndicators = {
@@ -38,11 +33,6 @@ function toggleTheme() {
   localStorage.setItem("theme", $html.classList.contains("dark") ? "dark" : "light");
 }
 
-(function() {
-  loadTheme();
-  setTimeout(() => {
-    document.dispatchEvent(new Event("theme:loaded"));
-  }, 500);
-})();
+loadTheme();
 
 document.querySelector("#theme-toggle")?.addEventListener("click", toggleTheme);
