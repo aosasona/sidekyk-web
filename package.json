@@ -16,12 +16,18 @@
     "@iconify-json/lucide": "^1.1.114",
     "@types/react": "^18.0.21",
     "@types/react-dom": "^18.0.6",
+    "apisauce": "^3.0.1",
     "astro": "^2.9.7",
+    "lucide-astro": "^0.276.0",
     "lucide-static": "^0.263.0",
     "nanostores": "^0.9.3",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "sass": "^1.64.2",
+    "tailwind-merge": "^1.14.0",
     "tailwindcss": "^3.0.24"
+  },
+  "devDependencies": {
+    "typescript": "^5.2.2"
   }
 }
