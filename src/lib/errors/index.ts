@@ -9,9 +9,6 @@ type ErrResult<Input extends NullableObject> = { ok: false; problem: Problem<Err
 
 type OkResult<Response extends NullableObject> = { ok: true; message: string; data: Response };
 
-// type Result<Response extends NullableObject, Input extends NullableObject, ResultType extends "ok" | "error"> = ResultType extends "error" ? ErrResult<Input> : OkResult<Response>;
-
-// infer result instead of using ResultType
 type Result<Response extends NullableObject, Input extends NullableObject> = OkResult<Response> | ErrResult<Input>;
 
 function Ok<T extends NullableObject>(message: string, data: T = null as T): Result<T, null> {
