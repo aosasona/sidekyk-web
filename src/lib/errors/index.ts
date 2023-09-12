@@ -9,19 +9,22 @@ type ErrResult<Input extends NullableObject> = { ok: false; problem: Problem<Err
 
 type OkResult<Response extends NullableObject> = { ok: true; message: string; data: Response };
 
-type Result<Response extends NullableObject, Input extends NullableObject, ResultType extends "ok" | "error"> = ResultType extends "error" ? ErrResult<Input> : OkResult<Response>;
+// type Result<Response extends NullableObject, Input extends NullableObject, ResultType extends "ok" | "error"> = ResultType extends "error" ? ErrResult<Input> : OkResult<Response>;
 
-function Ok<T extends NullableObject>(message: string, data: T = null as T): Result<T, null, "ok"> {
+// infer result instead of using ResultType
+type Result<Response extends NullableObject, Input extends NullableObject> = OkResult<Response> | ErrResult<Input>;
+
+function Ok<T extends NullableObject>(message: string, data: T = null as T): Result<T, null> {
   return { ok: true, message, data };
 }
 
-function Err<T extends object, I extends object, E extends ErrorType>(problem: Problem<E, I>, code: number = 500): Result<T, I, "error"> {
+function Err<T extends object, I extends object, E extends ErrorType>(problem: Problem<E, I>, code: number = 500): Result<T, I> {
   return { ok: false, problem, code, error: () => (typeof problem === "string" ? problem : problem.message ?? "Something went wrong") };
 }
 
-function isOk<T extends NullableObject, I extends NullableObject>(result: Result<T, I, "ok" | "error">): result is OkResult<T> {
+function isOk<T extends NullableObject, I extends NullableObject>(result: Result<T, I>): result is OkResult<T> {
   return result.ok;
 }
 
-export type { Result };
+export type { Result, NullableObject };
 export { Ok, Err, isOk };
