@@ -7,3 +7,6 @@ const api = apisauce.create({
 });
 
 // function post<T>(url: string, data: any): Promise<Result<T>> { }
+//
+
+export { api };
