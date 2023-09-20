@@ -2,6 +2,14 @@
 import Layout from "../layouts/Layout.astro";
 import Input from "../components/Input.astro";
 import Button from "../components/Button.astro";
+
+if (Astro.request.method == "post") {
+	try {
+		const data = await Astro.request.formData();
+		const email = data.get("email");
+		const password = data.get("password");
+	} catch (e) {}
+}
 ---
 
 <Layout title="Sign In">
@@ -10,7 +18,7 @@ import Button from "../components/Button.astro";
 			<h2 class="text-2xl font-medium">Sign In</h2>
 			<p class="text-sm text-zinc-600 dark:text-zinc-500">Enter your account credentials to continue</p>
 		</div>
-		<form class="flex flex-col gap-3 mt-4 w-full" id="loginForm" method="POST">
+		<form class="flex flex-col gap-3 mt-4 w-full" method="POST">
 			<div class="input-field">
 				<label>Email</label>
 				<Input name="email" type="email" required />
@@ -25,11 +33,3 @@ import Button from "../components/Button.astro";
 		</form>
 	</main>
 </Layout>
-
-<script>
-	const redirectTo = new URLSearchParams(window.location.search).get("r") || "/account";
-	const loginForm = document.getElementById("loginForm")!;
-	loginForm.onsubmit = function (e) {
-		e.preventDefault();
-	};
-</script>
