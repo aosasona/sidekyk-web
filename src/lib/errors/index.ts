@@ -62,10 +62,9 @@ function Err<T extends NullableObject, I extends NullableObject, E extends Error
 
 /////
 
-// TODO: get the exact error type and pass it to the match cases so that problem is typed correctly
 type MatchCases<T extends NullableObject, I extends NullableObject, R> = {
   ok: (data: T) => R;
-  err: (problem: Problem<ErrorType, I>) => R;
+  err: (err: ErrResult<I>) => R;
 };
 
 function isOk<T extends NullableObject, I extends NullableObject>(result: Result<T, I>): result is OkResult<T> {
@@ -77,7 +76,7 @@ function isErr<T extends NullableObject, I extends NullableObject>(result: Resul
 }
 
 function match<T extends NullableObject, I extends NullableObject, R>(result: Result<T, I>, cases: MatchCases<T, I, R>): R {
-  return result.ok ? cases.ok(result.data) : cases.err(result.problem);
+  return result.ok ? cases.ok(result.data) : cases.err(result);
 }
 
 function when<T extends NullableObject, I extends NullableObject>(result: Result<T, I>, cases: MatchCases<T, I, void>): void {
